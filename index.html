@@ -182,7 +182,7 @@
           <div class="item">
               <!-- Your image here -->
               <div style="display: flex; justify-content: center; align-items: center;">
-                <img src="images/teaser.png" alt="Image giving an overview of Sparse Attention Vectors method.">
+                <img src="static/images/teaser.png" alt="Image giving an overview of Sparse Attention Vectors method.">
             </div>
         </div>
       </div>
@@ -192,42 +192,38 @@
 <!-- End paper abstract -->
 
 <!-- Method Overview -->
-  <section class="section hero is-light2">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Why NaturalBench?</h2>
-          <div class="content has-text-justified">
+<section class="section hero is-light2">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">What are SAVs?</h2>
+        <div class="content has-text-justified">
+          <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 10px; color: #333;">
+            <b>Sparse Attention Vectors (SAVs)</b> are task-specific features extracted from the attention heads of large multimodal models (LMMs), offering a lightweight yet powerful solution for vision-language classification tasks. The method involves three primary steps:
+          </p>
 
-            <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 10px; color: #333;">
-              There are already many challenging visual-question-answering (VQA) benchmarks like MMMU, ScienceQA, and MMBench, so why NaturalBench? It turns out that these popular VQA benchmarks aren't as "<i>visual</i>" as they seem. For instance, many questions can be answered using <b>commonsense priors</b>, without relying on the image. For instance, ScienceQA-IMG asks "<i>What is the capital of Massachusetts?</i>", which is easily answered as "<i>Boston</i>" by a blind ChatGPT. Below, we highlight several such examples from six previous benchmarks (MME, MMBench, ScienceQA, MMMU, MMStar, AI2D) that can be solved without looking at the image:
-            </p>
+          <ol style="text-align: justify; font-size: 16px; line-height: 1.5; color: #333;">
+            <li><b>Extracting Attention Vectors:</b> Attention vectors from all heads and layers of the transformer are computed for a given set of few-shot examples. These vectors represent the model's latent understanding of the input sequence.</li>
+            <li><b>Identifying Relevant Vectors:</b> A scoring process evaluates the ability of each attention head to classify examples correctly. This step involves computing the cosine similarity between attention vectors and class centroids, selecting only the top-performing heads.</li>
+            <li><b>Classification with Sparse Heads:</b> The sparse set of attention heads is then used to classify new queries. Each head votes for a class label based on its similarity to precomputed centroids, and a majority vote determines the final prediction.</li>
+          </ol>
 
-            <div class="item">
-              <!-- Your image here -->
-              <div style="display: flex; justify-content: center; align-items: center;">
-                <img src="images/bias_more.jpg" alt="Image illustrating blind priors">
-            </div>
+          <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 10px; color: #333;">
+            This approach reveals a remarkable property of LMMs: even a small subset of attention heads can serve as highly effective features for downstream classification, dramatically reducing computational overhead while maintaining strong performance.
+          </p>
 
-              <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 10px; color: #333;">
-                What's more, even carefully constructed benchmarks like MME and MMStar can suffer from <b>imbalanced answers</b>. For example, MME's question "<i>Does this artwork exist in the form of a painting?</i>" is answered "Yes" 97.5% of the time! We show that finetuning a "blind" GPT-3.5 — using only text and no images — on a random half of each benchmark allows it to significantly outperform random chance (see the <span style="color: red;">red dotted line</span>) on the other half. In many cases, blind GPT-3.5 even matches or surpasses LLaVA-1.5 finetuned on the same data but with images!
-              </p>
-              
-              <div style="display: flex; justify-content: center; align-items: center;">
-                <img src="images/blind_finetune.png" alt="Image illustrating finetuning results">
-            </div>
-            
-            <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 10px; color: #333;">
-              These issues drive us to create NaturalBench, a vision-centric VQA benchmark immune to blind solutions.
-            </p>
-
-              
+          <div class="item">
+            <!-- Your image here -->
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <img src="images/bias_more.jpg" alt="Image illustrating Sparse Attention Vectors">
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
 
 <!--BibTex citation -->
