@@ -226,7 +226,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Numerical Results</h2>
+        <h2 class="title is-3">Benchmark Results</h2>
         <div class="content has-text-justified">
           <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 10px; color: #333;">
             Our evaluation highlights the strength and versatility of <b>Sparse Attention Vectors (SAVs)</b> across various vision-language tasks. Below are the key insights from our results:
@@ -256,6 +256,58 @@
 </section>
 
 
+<!-- Experiments Section -->
+<section class="section hero is-light2">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Analysis</h2>
+        <div class="content has-text-justified">
+          <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 10px; color: #333;">
+            SAVs are effective feature representations that have a variety of desireable properties which we describe in the following:
+          </p>
+
+          <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 10px; color: #333;">  
+          First, we demonstrate the sparsity and interpretability of SAVs by visualizing the selected heads for hallucination detection (MHaluBench), relative depth (BLINK), and image classification (EuroSAT) tasks. We emphasize here the importance of being able to identify the exact attention heads used for specific tasks, which can be an especially useful property for usecases requiring additional explainability. Furthermore, we visualize the effectiveness of the top selected attention head in separate the task data according to class label via a t-SNE plot.
+          </p>
+          
+          <div class="item">
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+              <img src="static/images/head_vis.png" alt="Attention Head Visualizationse">
+            </div>
+          </div>
+
+          <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 20px; color: #333;">
+            To evaluate the scaling properties of SAVs, we experiment with varying the number of examples per label and number of attention vectors used. We find excitingly that SAVs can scale with increasing examples and requires a sparse set of only 20 heads to achieve optimal or near optimal performance.
+          </p>
+
+          <div class="item">
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+              <img src="static/images/accuracy.png" alt="Varying number of examples and attention vectors for SAVs">
+            </div>
+          </div>
+
+          <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 20px; color: #333;">
+            In our paper, we perform several other experiments to better understand SAVs. The most notable of which includes the generalization of the heads that are found during SAV extraction. We find that SAV heads extracted on MHaluBench yield strong performance benefits on VLGuard and vice-versa. On the other hand, LoRA weights, as expected, do not have such generalization properties and largely overfit to the finetuned dataset. 
+          </p>
+
+          <p style="text-align: justify; font-size: 16px; line-height: 1.5; margin-top: 20px; color: #333;">
+            Another crucial benefit of SAVs is that the are truly multimodal features, able to be flexibly applied to both unimodal and multimodal tasks. This is in contrast to CLIP and SigLIP methods which have features for individual modalities. To demonstrate the benefits of our method, we compare SAVs to CLIP and SigLIP on two tasks with interleaved multimodal inputs (MHaluBench and NaturalBench). For CLIP and SigLIP we concatenate image and text features together. We find that CLIP and SigLIP vastly underperform on these tasks compared to SAVs, highlighting the value of the truly multimodal capabilities of our SAV features.
+          </p>
+
+          <div class="item">
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+              <img src="static/images/generalization_and_interleaved.png" alt="Generalization and Interleaved Tasks Experiments">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
 
 
@@ -263,7 +315,13 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@article{mitra2024sparse,
+        title={Sparse Attention Vectors: Generative Multimodal Model Features Are Discriminative Vision-Language Classifiers},
+        author={Mitra, Chancharik and Huang, Brandon and Chai, Tianning and Lin, Zhiqiu and Arbelle, Assaf and Feris, Rogerio and Karlinsky, Leonid and Darrell, Trevor and Ramanan, Deva and Herzig, Roei},
+        journal={arXiv preprint arXiv:2412.00142},
+        year={2024}
+      }
+      </code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
